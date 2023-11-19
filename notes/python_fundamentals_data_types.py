@@ -62,12 +62,12 @@ print("The {} needs {} {} of salt and {} {} of sugar.".format(menu, amount1, mea
 print("The %s needs %s %s of salt and %s %s of sugar." % (menu, amount1, measurement1, amount2, measurement2))
 
 # Built-In String Methods
-# *string.title(): returns a copy of the string with all the first character of words in uppercase.
-# *string.upper(): returns a copy of the string with all the characters in uppercase.
-# *string.lower(): returns a copy of the string with all the characters in lowercase.
-# *string.count(substring): returns number of occurrences of substring in string.
-# *string.split(char): returns a list of values where string is split at the given character. Without a parameter the default split is at every space.
-# *string.find(substring): returns the index of the start of the first occurrence of substring within string.
-# *string.isalnum(): returns boolean depending on whether the string's length is > 0 and all characters are alphanumeric (letters and numbers only). Strings that include spaces and punctuation will retun False for this method. Similar methods include ".isalpha()", ".isdigit()", ".islower()", ".isupper()", and so on. All return booleans.
-# *string.join(list): returns a string that is all strings within our set (in this case a list) concatenated.
-# *string.endswith(substring): returns a boolean based upon whether the last characters of string match substring.
+# * string.title(): returns a copy of the string with all the first character of words in uppercase.
+# * string.upper(): returns a copy of the string with all the characters in uppercase.
+# * string.lower(): returns a copy of the string with all the characters in lowercase.
+# * string.count(substring): returns number of occurrences of substring in string.
+# * string.split(char): returns a list of values where string is split at the given character. Without a parameter the default split is at every space.
+# * string.find(substring): returns the index of the start of the first occurrence of substring within string.
+# * string.isalnum(): returns boolean depending on whether the string's length is > 0 and all characters are alphanumeric (letters and numbers only). Strings that include spaces and punctuation will retun False for this method. Similar methods include ".isalpha()", ".isdigit()", ".islower()", ".isupper()", and so on. All return booleans.
+# * string.join(list): returns a string that is all strings within our set (in this case a list) concatenated.
+# * string.endswith(substring): returns a boolean based upon whether the last characters of string match substring.
