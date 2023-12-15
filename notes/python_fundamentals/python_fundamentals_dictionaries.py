@@ -97,3 +97,24 @@ for key, val in us_capitals.items():
     print(key, " = ", val)
 # Output: Washington = Olympia, California = Sacramento, Idaho = Boise, etc
 
+
+# Nesting
+# List of dictionaries
+users = [
+    {"first": "Ada", "last": "Lovelace"}, # index 0
+    {"first": "Alan", "last": "Turing"}, # index 1
+    {"first": "Eric", "last": "Idle"} # index 2
+]
+# Dictionary of lists
+resume_data = {
+    #        	     0           1           2
+    "skills": ["front-end", "back-end", "database"],
+    #                0           1
+    "languages": ["Python", "JavaScript"],
+    #                0              1
+    "hobbies":["rock climbing", "knitting"]
+}
+
+
+# Accessing Values in Nested Dictionaries
+print(users[0]["last"]) # prints Lovelace
