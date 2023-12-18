@@ -8,7 +8,7 @@
 # A constructor is a function that contains instructions for making a new instance of a class.
 # In Python, this is a special function called the '__init__' method.
 
-# class example:
+# Class example:
 class Shoe:
     # constructor:
     def __init__(self):
@@ -27,3 +27,6 @@ class Shoe:
     
     def on_sale(self, percent):
         self.price = self.price*(1-percent)
+
+# Making Instances:
+new_shoe = Shoe()
