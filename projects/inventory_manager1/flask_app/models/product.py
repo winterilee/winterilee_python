@@ -8,3 +8,4 @@ class Product:
         self.product_count = data["product_count"]
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
+        self.inventory_id = data["inventory_id"]
