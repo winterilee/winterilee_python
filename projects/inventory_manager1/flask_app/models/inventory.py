@@ -1,4 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask import flash
 
 class Inventory:
     db = "python_inventory_manager1_schema"
@@ -26,3 +27,21 @@ class Inventory:
             }
             inventory_list.append(one_inventory)
         return inventory_list
+    
+    @classmethod
+    def get_one(cls, inventory_id):
+        query = "SELECT * FROM inventories WHERE id = %(id)s;"
+        data = {"id": inventory_id}
+        result = connectToMySQL(cls.db).query_db(query, data)
+        return cls(result[0])
+    
+    @staticmethod
+    def validate_inventory(inventory):
+        is_valid = True
+        if len(inventory["inventory_name"]) <= 0:
+            flash("Inventory name is required.", "inventory")
+            is_valid = False
+        elif len(inventory["inventory_name"]) < 3:
+            flash("Inventory name must be at least 3 characters", "inventory")
+            is_valid = False
+        return is_valid
