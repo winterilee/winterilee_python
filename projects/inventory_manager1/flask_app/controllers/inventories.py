@@ -1,11 +1,13 @@
 from flask import render_template, request, redirect, session, url_for
 from flask_app import app
-from flask_app.models import inventory
+from flask_app.models import inventory, product
 
 @app.route("/dashboard")
 def dashboard():
     if "logged_in_id" not in session:
         return redirect(url_for("index"))
+    if "current_inventory" in session:
+        session.pop("current_inventory")
     all_inventories = inventory.Inventory.get_all()
     return render_template("dashboard.html", inventories = all_inventories)
 
@@ -32,5 +34,9 @@ def create_inventory():
 def view_inventory(inventory_id):
     if "logged_in_id" not in session:
         return redirect(url_for("index"))
+    if "current_inventory" in session:
+        session.pop("current_inventory")
+    session["current_inventory"] = inventory_id
     inventory_info = inventory.Inventory.get_one(inventory_id)
-    return render_template("view_inventory.html", inventory = inventory_info)
+    product_list = product.Product.get_all(inventory_id)
+    return render_template("view_inventory.html", inventory = inventory_info, products = product_list)

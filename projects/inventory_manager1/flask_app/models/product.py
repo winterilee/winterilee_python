@@ -17,9 +17,10 @@ class Product:
         return connectToMySQL(cls.db).query_db(query, data)
     
     @classmethod
-    def get_all(cls):
-        query = "SELECT * FROM products JOIN inventories ON products.inventory_id = inventories.id;"
-        results = connectToMySQL(cls.db).query_db(query)
+    def get_all(cls, inventory_id):
+        query = "SELECT * FROM products JOIN inventories ON products.inventory_id = %(id)s;"
+        data = {"id": inventory_id}
+        results = connectToMySQL(cls.db).query_db(query, data)
         product_list = []
         for row in results:
             one_product = {
