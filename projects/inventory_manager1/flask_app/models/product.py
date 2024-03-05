@@ -38,6 +38,22 @@ class Product:
         result = connectToMySQL(cls.db).query_db(query, data)
         return cls(result[0])
     
+    @classmethod
+    def update_product_name(cls, data):
+        query = "UPDATE products SET product_name = %(product_name)s WHERE id = %(id)s;"
+        return connectToMySQL(cls.db).query_db(query, data)
+    
+    @classmethod
+    def update_product_count(cls, data):
+        query = "UPDATE products SET product_count = %(product_count)s WHERE id = %(id)s;"
+        return connectToMySQL(cls.db).query_db(query, data)
+
+    classmethod
+    def delete_product(cls, product_id):
+        query = "DELETE FROM products WHERE id = %(id)s;"
+        data = {"id": product_id}
+        return connectToMySQL(cls.db).query_db(query, data)
+    
     @staticmethod
     def validate_product(product):
         is_valid = True
