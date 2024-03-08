@@ -23,7 +23,8 @@ class Inventory:
         for row in results:
             one_inventory = {
                 "id": row["id"],
-                "inventory_name": row["inventory_name"]
+                "inventory_name": row["inventory_name"],
+                "inventory_status": row["inventory_status"]
             }
             inventory_list.append(one_inventory)
         return inventory_list
