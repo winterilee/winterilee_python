@@ -15,7 +15,7 @@
             <div class="text-end">
                 <a href="/dashboard">Back to dashboard</a>
                 <span> | </span>
-                <a href="/view_inventory/inventory_id">Back to inventory</a>
+                <a href="/view_inventory/{{session['current_inventory']}}">Back to inventory</a>
             </div>
             <h2 class="mt-2">Add a New Product</h2>
             {% with messages = get_flashed_messages(category_filter = ["product"]) %}
@@ -32,6 +32,7 @@
                 <input type="text" name="product_name" class="p-1">
                 <label for="product_count" class="p-1">Product Name:</label>
                 <input type="number" min="0" step="1" name="product_count" class="p-1">
+                <input type="hidden" name="inventory_id" value="{{session['current_inventory']}}">
                 <input type="submit" value="Submit" class="p-1 mt-3">
             </form>
         </div>
