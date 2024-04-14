@@ -17,7 +17,7 @@ def new_inventory():
         return redirect(url_for("index"))
     return render_template("new_inventory.html")
 
-@app.route("/create_inventory", method = ["POST"])
+@app.route("/create_inventory", methods = ["POST"])
 def create_inventory():
     if "logged_in_id" not in session:
         return redirect(url_for("index"))

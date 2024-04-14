@@ -2,13 +2,13 @@ from flask import render_template, request, redirect, session, url_for
 from flask_app import app
 from flask_app.models import product
 
-@app.route("/new_product")
-def new_product():
+@app.route("/new_product/<int:inventory_id>")
+def new_product(inventory_id):
     if "logged_in_id" not in session:
         return redirect(url_for("index"))
-    return render_template("new_product.html")
+    return render_template("new_product.html", inventory_id)
 
-@app.route("/create_product", method = ["POST"])
+@app.route("/create_product", methods = ["POST"])
 def create_product():
     if "logged_in_id" not in session:
         return redirect(url_for("index"))
