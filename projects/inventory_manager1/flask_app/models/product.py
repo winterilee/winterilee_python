@@ -64,7 +64,10 @@ class Product:
         elif len(product["product_name"]) < 3:
             flash("Product name must be at least 3 characters.", "product")
             is_valid = False
-        if product["product_count"] <= 0:
+        if len(product["product_count"]) <= 0:
+            flash("Product count is required.", "product")
+            is_valid = False
+        elif int(product["product_count"]) <= 0:
             flash("Invalid amount.", "product")
             is_valid = False
         return is_valid

@@ -16,7 +16,7 @@ def create_product():
     if "logged_in_id" not in session:
         return redirect(url_for("index"))
     if not product.Product.validate_product(request.form):
-        return redirect(url_for("new_product"))
+        return redirect("/new_product/" + str(session['current_inventory']))
     else:
         data = {
             "product_name": request.form["product_name"],
@@ -24,4 +24,4 @@ def create_product():
             "inventory_id": request.form["inventory_id"]
         }
         product.Product.create_product(data)
-    return redirect("/view_inventory/<int:session['current_inventory']>")
+    return redirect("/view_inventory/" + str(session['current_inventory']))
