@@ -36,6 +36,11 @@ class Inventory:
         result = connectToMySQL(cls.db).query_db(query, data)
         return cls(result[0])
     
+    @classmethod
+    def update_inventory(cls, data):
+        query = "UPDATE inventories SET inventory_name = %(inventory_name)s WHERE id = %(id)s;"
+        return connectToMySQL(cls.db).query_db(query, data)
+
     @staticmethod
     def validate_inventory(inventory):
         is_valid = True

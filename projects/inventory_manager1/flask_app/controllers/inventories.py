@@ -40,3 +40,27 @@ def view_inventory(inventory_id):
     inventory_info = inventory.Inventory.get_one(inventory_id)
     product_list = product.Product.get_all(inventory_id)
     return render_template("view_inventory.html", inventory = inventory_info, products = product_list)
+
+@app.route("/edit_inventory/<int:inventory_id>")
+def edit_inventory(inventory_id):
+    if "logged_in_id" not in session:
+        return redirect(url_for("index"))
+    if "current_inventory" in session:
+        session.pop("current_inventory")
+    session["current_inventory"] = inventory_id
+    inventory_info = inventory.Inventory.get_one(inventory_id)
+    return render_template("edit_inventory.html", inventory = inventory_info)
+
+@app.route("/update_inventory/<int:inventory_id>", methods = ["POST"])
+def update_inventory(inventory_id):
+    if "logged_in_id" not in session:
+        return redirect(url_for("index"))
+    if not inventory.Inventory.validate_inventory(request.form):
+        return redirect("/edit_inventory/" + str(inventory_id))
+    else:
+        data = {
+            "id": request.form["id"],
+            "inventory_name": request.form["inventory_name"]
+        }
+        inventory.Inventory.update_inventory(data)
+    return redirect(url_for("dashboard"))
