@@ -44,7 +44,7 @@ class Product:
         query = "UPDATE products SET product_name = %(product_name)s, product_count = %(product_count)s WHERE id = %(id)s;"
         return connectToMySQL(cls.db).query_db(query, data)
     
-    classmethod
+    @classmethod
     def delete_product(cls, product_id):
         query = "DELETE FROM products WHERE id = %(id)s;"
         data = {"id": product_id}

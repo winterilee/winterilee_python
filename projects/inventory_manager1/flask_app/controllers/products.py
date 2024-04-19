@@ -51,3 +51,12 @@ def update_product(product_id):
         }
         product.Product.update_product(data)
     return redirect("/view_inventory/" + str(session['current_inventory']))
+
+@app.route("/delete_product/<int:product_id>")
+def delete_product(product_id):
+    if "logged_in_id" not in session:
+        return redirect(url_for("index"))
+    if "current_inventory" not in session:
+        return redirect(url_for("dashboard"))
+    product.Product.delete_product(product_id)
+    return redirect("/view_inventory/" + str(session['current_inventory']))
