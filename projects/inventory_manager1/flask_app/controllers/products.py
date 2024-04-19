@@ -25,3 +25,29 @@ def create_product():
         }
         product.Product.create_product(data)
     return redirect("/view_inventory/" + str(session['current_inventory']))
+
+@app.route("/edit_product/<int:product_id>")
+def edit_product(product_id):
+    if "logged_in_id" not in session:
+        return redirect(url_for("index"))
+    if "current_inventory" not in session:
+        return redirect(url_for("dashboard"))
+    product_info = product.Product.get_one(product_id)
+    return render_template("edit_product.html", product = product_info)
+
+@app.route("/update_product/<int:product_id>", methods = ["POST"])
+def update_product(product_id):
+    if "logged_in_id" not in session:
+        return redirect(url_for("index"))
+    if "current_inventory" not in session:
+        return redirect(url_for("dashboard"))
+    if not product.Product.validate_product(request.form):
+        return redirect("/edit_product/" + str(product_id))
+    else:
+        data = {
+            "id": request.form["id"],
+            "product_name": request.form["product_name"],
+            "product_count": request.form["product_count"]
+        }
+        product.Product.update_product(data)
+    return redirect("/view_inventory/" + str(session['current_inventory']))

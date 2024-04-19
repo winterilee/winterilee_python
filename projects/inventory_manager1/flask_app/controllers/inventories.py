@@ -55,6 +55,8 @@ def edit_inventory(inventory_id):
 def update_inventory(inventory_id):
     if "logged_in_id" not in session:
         return redirect(url_for("index"))
+    if "current_inventory" not in session:
+        return redirect(url_for("dashboard"))
     if not inventory.Inventory.validate_inventory(request.form):
         return redirect("/edit_inventory/" + str(inventory_id))
     else:
